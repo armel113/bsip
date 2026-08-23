@@ -31,10 +31,39 @@
   /* ── Ouverture ── */
   .hero{background:linear-gradient(160deg,#0d1b33,#15294d 60%,#0d1b33);
     color:#fff;padding:38px 24px 42px;text-align:center;position:relative;overflow:hidden}
-  .hero::after{content:'';position:absolute;inset:auto 0 0 0;height:4px;
+  .hero::after{content:'';position:absolute;inset:auto 0 0 0;height:4px;z-index:3;
     background:linear-gradient(90deg,transparent,var(--or),transparent)}
+
+  /* ══ Fond animé : trame de circuits imprimés, en CSS seulement ══
+     Aucune image chargée, donc aucun poids ajouté à la page. */
+  .circuits{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;
+    background-image:
+      linear-gradient(rgba(201,162,39,.10) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(201,162,39,.10) 1px,transparent 1px),
+      radial-gradient(circle,rgba(232,198,90,.5) 1.6px,transparent 2px);
+    background-size:46px 46px,46px 46px,138px 138px;
+    background-position:0 0,0 0,23px 23px;
+    animation:derive 26s linear infinite}
+  @keyframes derive{to{background-position:46px 46px,46px 46px,69px 161px}}
+  /* Halo qui respire, très lent */
+  .halo{position:absolute;inset:-30%;z-index:0;pointer-events:none;
+    background:radial-gradient(circle at 50% 32%,rgba(70,120,220,.24),transparent 58%);
+    animation:respire 9s ease-in-out infinite}
+  @keyframes respire{0%,100%{opacity:.55}50%{opacity:1}}
+  .hero > *:not(.circuits):not(.halo){position:relative;z-index:2}
+
+  /* Le logo flotte et sa bordure d'or s'éclaire doucement */
+  @keyframes flotte{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+  @keyframes lueur{
+    0%,100%{box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 0 rgba(201,162,39,0)}
+    50%{box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 26px rgba(201,162,39,.42)}}
+
+  @media (prefers-reduced-motion:reduce){
+    .circuits,.halo,.hero img{animation:none}
+  }
   .hero img{width:168px;height:auto;margin:0 auto 18px;display:block;border-radius:16px;
-    border:1px solid rgba(201,162,39,.35);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+    border:1px solid rgba(201,162,39,.35);box-shadow:0 10px 30px rgba(0,0,0,.5);
+    animation:flotte 6s ease-in-out infinite,lueur 4.5s ease-in-out infinite}
   .marque{font-size:clamp(24px,6vw,36px);font-weight:800;letter-spacing:-.01em;line-height:1.15}
   .metier{margin-top:10px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;
     color:var(--or-clair);font-weight:700}
@@ -126,6 +155,8 @@
 <div class="wrap">
 
   <header class="hero">
+    <div class="halo" aria-hidden="true"></div>
+    <div class="circuits" aria-hidden="true"></div>
     <img src="./bsip-logo.jpg" alt="Logo Biagné Service Informatique">
     <div class="marque">Biagné Service Informatique</div>
     <div class="metier">Sécurité · Réseau · Maintenance</div>
