@@ -3,303 +3,431 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Biagné Service Informatique — Vidéosurveillance, maintenance et formation</title>
-<meta name="description" content="Vente, installation et maintenance de vidéosurveillance. Dépannage informatique à domicile et au bureau. Matériel, drones et formations. Soubré, Côte d'Ivoire.">
-<meta name="theme-color" content="#0d1b33">
+<title>Biagné Service Informatique — Vidéosurveillance et dépannage à Soubré</title>
+<meta name="description" content="Installation de caméras de surveillance, dépannage informatique et vente de matériel à Soubré. Matériel Hikvision importé. Devis gratuit, intervention rapide.">
+<meta name="theme-color" content="#0a1628">
 <meta property="og:title" content="Biagné Service Informatique — BSIP">
-<meta property="og:description" content="Vidéosurveillance, maintenance informatique, matériel et formations. Devis gratuit.">
-<meta property="og:image" content="./bsip-logo.jpg">
+<meta property="og:description" content="Vidéosurveillance, dépannage informatique et matériel professionnel à Soubré. Devis gratuit.">
+<meta property="og:image" content="./travaux-baie.jpg">
+<meta property="og:type" content="website">
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   :root{
-    --nuit:#0d1b33;
-    
-    --bleu:#15294d;
-    --or:#c9a227;
-    --or-clair:#e8c65a;
-    --encre:#101823;
-    --gris:#5c6a7d;
-    --trait:rgba(201,162,39,.22);
+    --nuit:#0a1628;
+    --nuit2:#12294a;
+    --or:#d4a334;
+    --or-clair:#f0c65f;
+    --froid:#f4f6f9;
+    --encre:#0f1720;
+    --gris:#5a6878;
+    --trait:rgba(10,22,40,.1);
+    --ombre:0 18px 50px rgba(10,22,40,.16);
   }
-  html{scroll-behavior:smooth}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{font-family:'Segoe UI',system-ui,-apple-system,Roboto,sans-serif;
-    background:#f5f6f8;color:var(--encre);line-height:1.6;font-size:17px;
-    -webkit-font-smoothing:antialiased}
-  .wrap{max-width:1100px;margin:0 auto;background:#fff;box-shadow:0 0 60px rgba(13,27,51,.1)}
+    background:var(--froid);color:var(--encre);line-height:1.62;font-size:17px;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}
+  a{color:inherit}
 
-  /* ── Ouverture ── */
-  .hero{background:linear-gradient(160deg,#0d1b33,#15294d 60%,#0d1b33);
-    color:#fff;padding:38px 24px 42px;text-align:center;position:relative;overflow:hidden}
-  .hero::after{content:'';position:absolute;inset:auto 0 0 0;height:4px;z-index:3;
-    background:linear-gradient(90deg,transparent,var(--or),transparent)}
+  /* ══════════ BARRE FIXE ══════════ */
+  .barre{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;
+    justify-content:space-between;gap:14px;padding:10px 18px;transform:translateY(-100%);
+    transition:transform .45s cubic-bezier(.16,.9,.3,1),background .45s,box-shadow .45s}
+  .barre.on{transform:none;background:rgba(10,22,40,.95);backdrop-filter:blur(10px);
+    box-shadow:0 6px 26px rgba(0,0,0,.3)}
+  .barre-marque{display:flex;align-items:center;gap:10px;color:#fff;font-weight:800;
+    font-size:15.5px;text-decoration:none;letter-spacing:-.01em}
+  .barre-marque img{width:34px;height:34px;object-fit:cover;border-radius:8px;
+    border:1px solid rgba(212,163,52,.5)}
+  .barre-cta{background:#25D366;color:#fff;text-decoration:none;font-weight:800;
+    font-size:14.5px;padding:10px 18px;border-radius:9px;white-space:nowrap;
+    transition:transform .15s,box-shadow .15s}
+  .barre-cta:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(37,211,102,.45)}
+  @media(max-width:560px){.barre-marque span{display:none}}
 
-  /* ══ Fond animé : trame de circuits imprimés, en CSS seulement ══
-     Aucune image chargée, donc aucun poids ajouté à la page. */
-  .circuits{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;
+  /* ══════════ OUVERTURE ══════════ */
+  .hero{position:relative;min-height:100svh;display:flex;align-items:center;
+    overflow:hidden;background:var(--nuit)}
+  .hero-fond{position:absolute;inset:0;z-index:0}
+  .hero-fond{overflow:hidden}
+  .hero-fond img{width:100%;height:100%;object-fit:cover;opacity:.34;
+    transform:scale(1.06);animation:respire 22s ease-in-out infinite}
+  @keyframes respire{0%,100%{transform:scale(1.06)}50%{transform:scale(1.14)}}
+  .voile{position:absolute;inset:0;z-index:1;
+    background:linear-gradient(120deg,rgba(10,22,40,.96) 0%,rgba(10,22,40,.82) 45%,
+      rgba(10,22,40,.55) 100%)}
+  /* Trame de circuits imprimés animée */
+  .circuits{position:absolute;inset:0;z-index:1;opacity:.55;pointer-events:none;
     background-image:
-      linear-gradient(rgba(201,162,39,.10) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(201,162,39,.10) 1px,transparent 1px),
-      radial-gradient(circle,rgba(232,198,90,.5) 1.6px,transparent 2px);
-    background-size:46px 46px,46px 46px,138px 138px;
-    background-position:0 0,0 0,23px 23px;
-    animation:derive 26s linear infinite}
-  @keyframes derive{to{background-position:46px 46px,46px 46px,69px 161px}}
-  /* Halo qui respire, très lent */
-  .halo{position:absolute;inset:-30%;z-index:0;pointer-events:none;
-    background:radial-gradient(circle at 50% 32%,rgba(70,120,220,.24),transparent 58%);
-    animation:respire 9s ease-in-out infinite}
-  @keyframes respire{0%,100%{opacity:.55}50%{opacity:1}}
-  .hero > *:not(.circuits):not(.halo){position:relative;z-index:2}
+      linear-gradient(rgba(212,163,52,.09) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(212,163,52,.09) 1px,transparent 1px),
+      radial-gradient(circle,rgba(240,198,95,.55) 1.7px,transparent 2.2px);
+    background-size:52px 52px,52px 52px,156px 156px;
+    background-position:0 0,0 0,26px 26px;
+    animation:derive 28s linear infinite}
+  @keyframes derive{to{background-position:52px 52px,52px 52px,78px 182px}}
 
-  /* Le logo flotte et sa bordure d'or s'éclaire doucement */
-  @keyframes flotte{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-  @keyframes lueur{
-    0%,100%{box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 0 rgba(201,162,39,0)}
-    50%{box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 26px rgba(201,162,39,.42)}}
-
-  @media (prefers-reduced-motion:reduce){
-    .circuits,.halo,.hero img{animation:none}
-  }
-  .hero img{width:168px;height:auto;margin:0 auto 18px;display:block;border-radius:16px;
-    border:1px solid rgba(201,162,39,.35);box-shadow:0 10px 30px rgba(0,0,0,.5);
-    animation:flotte 6s ease-in-out infinite,lueur 4.5s ease-in-out infinite}
-  .marque{font-size:clamp(24px,6vw,36px);font-weight:800;letter-spacing:-.01em;line-height:1.15}
-  .metier{margin-top:10px;font-size:13px;letter-spacing:.24em;text-transform:uppercase;
-    color:var(--or-clair);font-weight:700}
-  .devise{margin-top:16px;font-size:17px;color:rgba(255,255,255,.88);max-width:34ch;
-    margin-left:auto;margin-right:auto}
-  .actions{display:grid;gap:11px;max-width:360px;margin:26px auto 0}
-  .btn{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:16.5px;
-    padding:15px 20px;border-radius:11px;transition:transform .12s}
-  .btn:active{transform:scale(.985)}
+  .hero-contenu{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;
+    padding:110px 24px 44px;color:#fff}
+  .logo-h{width:96px;border-radius:16px;margin-bottom:22px;
+    border:1px solid rgba(212,163,52,.5);box-shadow:0 12px 34px rgba(0,0,0,.55);
+    animation:leve 7s ease-in-out infinite}
+  @keyframes leve{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .metier{font-size:12.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:800;
+    color:var(--or-clair);margin-bottom:12px}
+  .hero h1{font-size:clamp(32px,7.4vw,60px);line-height:1.05;font-weight:800;
+    letter-spacing:-.035em;max-width:17ch;text-shadow:0 4px 30px rgba(0,0,0,.5)}
+  .hero h1 .mot{display:inline-block;opacity:0;transform:translateY(26px);
+    animation:monte .8s cubic-bezier(.16,.9,.3,1) forwards}
+  .hero h1 em{font-style:normal;color:var(--or-clair)}
+  @keyframes monte{to{opacity:1;transform:none}}
+  .accroche{margin-top:18px;font-size:clamp(16.5px,2.1vw,20px);color:rgba(255,255,255,.9);
+    max-width:44ch;opacity:0;animation:monte .8s cubic-bezier(.16,.9,.3,1) .55s forwards}
+  .actions-h{display:grid;gap:11px;max-width:430px;margin-top:28px;
+    opacity:0;animation:monte .8s cubic-bezier(.16,.9,.3,1) .75s forwards}
+  @media(min-width:480px){.actions-h{grid-template-columns:1fr auto}}
+  .btn{display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;
+    font-weight:800;font-size:16px;padding:15px 22px;border-radius:11px;border:0;cursor:pointer;
+    transition:transform .16s cubic-bezier(.2,.7,.3,1),box-shadow .16s;white-space:nowrap}
+  .btn:hover{transform:translateY(-2px)}
   .btn:focus-visible{outline:3px solid var(--or);outline-offset:3px}
-  .b-wa{background:#25D366;color:#fff}
-  .b-tel{background:var(--or);color:#1a1200}
-  .b-mail{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.45)}
+  .b-wa{background:#25D366;color:#fff;position:relative;overflow:hidden;
+    box-shadow:0 8px 26px rgba(37,211,102,.34)}
+  .b-wa::after{content:'';position:absolute;inset:0;
+    background:linear-gradient(110deg,transparent 40%,rgba(255,255,255,.4) 50%,transparent 60%);
+    transform:translateX(-130%);animation:balaye 5s ease-in-out infinite}
+  @keyframes balaye{0%,72%{transform:translateX(-130%)}90%,100%{transform:translateX(130%)}}
+  .b-or{background:var(--or);color:#1a1200;box-shadow:0 8px 26px rgba(212,163,52,.3)}
+  .b-fant{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4)}
+  .b-clair{background:#fff;color:var(--nuit);border:2px solid var(--nuit)}
 
-  /* ── Bandeau garanties ── */
-  .garanties{display:flex;flex-wrap:wrap;background:var(--bleu);color:#fff}
-  .garanties div{flex:1 1 50%;padding:14px 18px;font-size:14px;font-weight:600;
-    border-top:1px solid rgba(255,255,255,.12);border-right:1px solid rgba(255,255,255,.12)}
-  @media(min-width:700px){.garanties div{flex:1 1 25%}}
+  .fleche{position:absolute;left:50%;bottom:12px;z-index:2;transform:translateX(-50%);
+    color:rgba(255,255,255,.6);font-size:24px;animation:sautille 2.4s ease-in-out infinite}
+  @keyframes sautille{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
-  .sec{padding:44px 24px}
-  .sec h2{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);
-    font-weight:800;margin-bottom:8px}
-  .sec .titre{font-size:clamp(22px,5vw,30px);font-weight:800;letter-spacing:-.01em;margin-bottom:14px}
-  .sec p{color:var(--gris);max-width:62ch}
+  /* ══════════ PREUVE CHIFFRÉE ══════════ */
+  .preuve{background:var(--nuit2);color:#fff;border-top:3px solid var(--or);
+    display:grid;grid-template-columns:1fr 1fr}
+  @media(min-width:760px){.preuve{grid-template-columns:repeat(4,1fr)}}
+  .preuve div{padding:22px 18px;text-align:center;
+    border-right:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);
+    opacity:0;animation:apparait .55s ease forwards}
+  .preuve div:nth-child(1){animation-delay:.05s}
+  .preuve div:nth-child(2){animation-delay:.15s}
+  .preuve div:nth-child(3){animation-delay:.25s}
+  .preuve div:nth-child(4){animation-delay:.35s}
+  @keyframes apparait{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .preuve b{display:block;font-size:15.5px;font-weight:800;margin-bottom:2px}
+  .preuve span{font-size:13.5px;color:rgba(255,255,255,.72)}
 
-  /* ── Métiers ── */
-  .metiers{display:grid;gap:0;border-top:1px solid #e6e8ec}
-  .metier-bloc{padding:30px 24px;border-bottom:1px solid #e6e8ec}
-  .metier-bloc .num{font-size:12px;font-weight:800;letter-spacing:.18em;color:var(--or)}
-  .metier-bloc h3{font-size:23px;font-weight:800;margin:6px 0 10px;letter-spacing:-.01em}
-  .metier-bloc p{color:var(--gris);font-size:16px;margin-bottom:14px}
+  /* ══════════ SECTIONS ══════════ */
+  .zone{max-width:1180px;margin:0 auto;padding:74px 24px}
+  .oeil{font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:800;
+    color:var(--or);margin-bottom:10px}
+  .titre{font-size:clamp(26px,4.4vw,40px);font-weight:800;letter-spacing:-.03em;
+    line-height:1.14;margin-bottom:16px}
+  .chapo{color:var(--gris);font-size:clamp(16.5px,1.9vw,19px);max-width:60ch}
+
+  /* Métiers */
+  .metiers{display:grid;gap:18px;margin-top:36px}
+  @media(min-width:860px){.metiers{grid-template-columns:repeat(3,1fr);gap:22px}}
+  .carte-m{background:#fff;border-radius:18px;padding:30px 26px;box-shadow:var(--ombre);
+    position:relative;overflow:hidden;
+    transition:transform .4s cubic-bezier(.2,.7,.3,1),box-shadow .4s,opacity .85s ease}
+  .carte-m:hover{transform:translateY(-7px);box-shadow:0 28px 64px rgba(10,22,40,.22)}
+  .carte-m::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:linear-gradient(var(--or),transparent)}
+  .num{font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--or)}
+  .carte-m h3{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:8px 0 10px}
+  .carte-m p{color:var(--gris);font-size:15.5px;margin-bottom:16px}
   .liste{list-style:none;display:grid;gap:8px}
-  .liste li{position:relative;padding-left:26px;font-size:15.5px;color:#2b3646}
-  .liste li::before{content:'✓';position:absolute;left:0;top:0;color:var(--or);font-weight:800}
-  @media(min-width:820px){
-    .metiers{grid-template-columns:repeat(3,1fr)}
-    .metier-bloc{border-right:1px solid #e6e8ec;border-bottom:none}
-    .metier-bloc:last-child{border-right:none}
-  }
+  .liste li{position:relative;padding-left:25px;font-size:15.5px;color:#2a3644}
+  .liste li::before{content:'✓';position:absolute;left:0;color:var(--or);font-weight:800}
 
-  /* ── Formations ── */
-  .form{background:var(--nuit);color:#fff;padding:44px 24px}
-  .form h2{color:var(--or)}
-  .form .titre{color:#fff}
-  .form p{color:rgba(255,255,255,.8)}
-  .cols{display:grid;gap:26px;margin-top:22px}
-  @media(min-width:760px){.cols{grid-template-columns:1fr 1fr;gap:26px 40px}}
-  .cols h4{font-size:15px;font-weight:800;color:var(--or-clair);margin-bottom:10px;
-    letter-spacing:.06em;text-transform:uppercase}
-  .cols .liste li{color:rgba(255,255,255,.9)}
-  .cols .liste li::before{color:var(--or-clair)}
-
-  /* ── Zone + contact ── */
-  .infos{padding:34px 24px;border-top:1px solid #e6e8ec;font-size:16px}
-  .infos div{display:flex;gap:12px;padding:9px 0;align-items:flex-start}
-  .infos b{min-width:112px;color:var(--nuit);font-weight:700}
-  .infos a{color:var(--nuit);font-weight:600}
-  .rappel{background:#fffbe9;border:1.5px solid #ecd489;border-radius:12px;
-    padding:16px 18px;margin:0 24px 34px;font-size:15px;color:#6b5310;line-height:1.55}
   /* Réalisations */
-  .travaux{background:#f7f8fa;padding:44px 24px;border-top:1px solid #e6e8ec}
-  .grille-photos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-  @media(min-width:760px){.grille-photos{grid-template-columns:repeat(3,1fr);gap:16px}}
-  .photo{position:relative;border-radius:12px;overflow:hidden;background:#dfe3e8;
-    box-shadow:0 4px 14px rgba(13,27,51,.12)}
-  .photo img{width:100%;height:100%;aspect-ratio:4/3;object-fit:cover;display:block}
-  .photo span{position:absolute;inset:auto 0 0 0;padding:24px 12px 10px;color:#fff;
-    font-size:13px;font-weight:700;line-height:1.3;
-    background:linear-gradient(transparent,rgba(8,18,34,.88))}
+  .travaux{background:var(--nuit);color:#fff;position:relative;overflow:hidden}
+  .travaux::before{content:'';position:absolute;inset:-30%;
+    background:radial-gradient(circle at 70% 30%,rgba(212,163,52,.17),transparent 58%);
+    opacity:0;transition:opacity 1.3s ease}
+  .travaux.vu::before{opacity:1}
+  .travaux .zone{position:relative;z-index:1}
+  .travaux .titre{color:#fff}
+  .travaux .chapo{color:rgba(255,255,255,.78)}
+  .galerie{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}
+  @media(min-width:820px){.galerie{grid-template-columns:repeat(3,1fr);gap:18px}}
+  .vue{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/3;background:#16243a;
+    transition:transform .4s cubic-bezier(.2,.7,.3,1),box-shadow .4s,opacity .85s ease}
+  .vue:hover{transform:translateY(-5px);box-shadow:0 22px 50px rgba(0,0,0,.45)}
+  .vue img{width:100%;height:100%;object-fit:cover;
+    transform:scale(1.01);transition:transform .9s cubic-bezier(.2,.7,.3,1)}
+  .vue:hover img{transform:scale(1.1)}
+  .vue span{position:absolute;inset:auto 0 0 0;z-index:2;padding:26px 14px 12px;color:#fff;
+    font-size:13px;font-weight:800;line-height:1.3;
+    background:linear-gradient(transparent,rgba(6,14,26,.9))}
 
-  /* Gammes de caméras */
-  .gammes{display:grid;gap:14px;margin-top:22px}
+  /* Gammes */
+  .gammes{display:grid;gap:14px;margin-top:32px}
   @media(min-width:700px){.gammes{grid-template-columns:1fr 1fr}}
-  .gamme{border:1px solid #e2e5ea;border-left:4px solid var(--or);border-radius:10px;
-    padding:16px 18px;background:#fff}
+  .gamme{background:#fff;border-radius:12px;border-left:4px solid var(--or);
+    padding:18px 20px;box-shadow:0 6px 22px rgba(10,22,40,.08);
+    transition:transform .3s,box-shadow .3s}
+  .gamme:hover{transform:translateX(4px);box-shadow:0 12px 32px rgba(10,22,40,.14)}
   .gamme b{display:block;font-size:16.5px;margin-bottom:4px}
-  .gamme span{font-size:14.5px;color:var(--gris);line-height:1.5}
-  .import{background:var(--bleu);color:#fff;border-radius:12px;padding:20px 22px;
-    margin-top:24px;font-size:16px;line-height:1.6}
+  .gamme span{font-size:15px;color:var(--gris);line-height:1.5}
+  .import{background:var(--nuit2);color:#fff;border-radius:16px;padding:26px 26px;
+    margin-top:26px;font-size:16.5px;line-height:1.65;position:relative;overflow:hidden}
+  .import::before{content:'';position:absolute;inset:-40%;
+    background:radial-gradient(circle at 20% 50%,rgba(212,163,52,.22),transparent 60%)}
+  .import > *{position:relative;z-index:1}
   .import b{color:var(--or-clair)}
 
-  footer{background:var(--nuit);color:rgba(255,255,255,.6);padding:26px 24px;
-    text-align:center;font-size:13.5px}
+  /* Formations */
+  .cols{display:grid;gap:26px;margin-top:26px}
+  @media(min-width:760px){.cols{grid-template-columns:1fr 1fr;gap:26px 44px}}
+  .cols h4{font-size:14.5px;font-weight:800;color:var(--or);margin-bottom:12px;
+    letter-spacing:.08em;text-transform:uppercase}
+
+  /* Contact */
+  .infos{display:grid;max-width:620px;margin:0 auto;font-size:16.5px}
+  .infos div{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--trait);
+    align-items:flex-start}
+  .infos b{min-width:112px;color:var(--nuit);font-weight:800}
+  .infos a{font-weight:700;color:var(--nuit)}
+  .final{display:grid;gap:12px;max-width:520px;margin:34px auto 0}
+
+  footer{background:var(--nuit);color:rgba(255,255,255,.6);padding:32px 24px 96px;
+    text-align:center;font-size:13.5px;line-height:1.7}
   footer a{color:var(--or-clair)}
+
+  /* Barre d'action mobile */
+  .quai{position:fixed;left:0;right:0;bottom:0;z-index:70;display:grid;
+    grid-template-columns:1fr 1fr;background:rgba(255,255,255,.97);
+    box-shadow:0 -6px 26px rgba(10,22,40,.18);
+    transform:translateY(110%);transition:transform .45s cubic-bezier(.16,.9,.3,1)}
+  .quai.on{transform:none}
+  .quai a{display:flex;align-items:center;justify-content:center;gap:8px;padding:15px 10px;
+    text-decoration:none;font-weight:800;font-size:15.5px}
+  .quai .q1{background:#25D366;color:#fff}
+  .quai .q2{background:var(--or);color:#1a1200}
+  @media(min-width:820px){.quai{display:none}footer{padding-bottom:32px}}
+
+  .anim{opacity:0;transform:translateY(30px) scale(.985);
+    transition:opacity .85s ease,transform .85s cubic-bezier(.16,.9,.3,1)}
+  .anim.vu{opacity:1;transform:none}
+  .metiers .carte-m:nth-child(2),.galerie .vue:nth-child(2){transition-delay:.1s}
+  .metiers .carte-m:nth-child(3),.galerie .vue:nth-child(3){transition-delay:.2s}
+  .galerie .vue:nth-child(4){transition-delay:.1s}
+  .galerie .vue:nth-child(5){transition-delay:.2s}
+  .galerie .vue:nth-child(6){transition-delay:.3s}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .anim{opacity:1;transform:none;transition:none}
+    .hero h1 .mot,.accroche,.actions-h,.preuve div{opacity:1;transform:none;animation:none}
+    .circuits,.hero-fond img,.b-wa::after,.fleche,.logo-h{animation:none}
+    .carte-m,.vue,.vue img,.btn,.gamme{transition:none}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header class="hero">
-    <div class="halo" aria-hidden="true"></div>
-    <div class="circuits" aria-hidden="true"></div>
-    <img src="./bsip-logo.jpg" alt="Logo Biagné Service Informatique">
-    <div class="marque">Biagné Service Informatique</div>
+<div class="barre" id="barre">
+  <a class="barre-marque" href="#haut">
+    <img src="./bsip-logo.jpg" alt="">
+    <span>Biagné Service Informatique</span>
+  </a>
+  <a class="barre-cta" href="https://wa.me/2250708480359" target="_blank" rel="noopener">Devis gratuit</a>
+</div>
+
+<header class="hero" id="haut">
+  <div class="hero-fond"><img src="./travaux-baie.jpg" alt=""></div>
+  <div class="voile"></div>
+  <div class="circuits" aria-hidden="true"></div>
+
+  <div class="hero-contenu">
+    <img class="logo-h" src="./bsip-logo.jpg" alt="Logo Biagné Service Informatique">
     <div class="metier">Sécurité · Réseau · Maintenance</div>
-    <p class="devise">Votre informatique, notre priorité. Vidéosurveillance, dépannage et formation à Soubré et dans toute la région.</p>
-    <div class="actions">
-      <a class="btn b-wa" href="https://wa.me/2250708480359" target="_blank" rel="noopener">💬 Demander un devis sur WhatsApp</a>
-      <a class="btn b-tel" href="tel:+2250716300000">📞 07 16 30 00 00</a>
-      <a class="btn b-mail" href="mailto:armel113@gmail.com">✉️ Nous écrire</a>
+    <h1><span class="mot" style="animation-delay:.08s">Voyez</span>
+      <span class="mot" style="animation-delay:.18s">ce</span>
+      <span class="mot" style="animation-delay:.26s">qui</span>
+      <span class="mot" style="animation-delay:.34s">se</span>
+      <span class="mot" style="animation-delay:.42s">passe</span>
+      <span class="mot" style="animation-delay:.5s">chez</span>
+      <span class="mot" style="animation-delay:.58s">vous,</span>
+      <span class="mot" style="animation-delay:.68s"><em>où que vous soyez.</em></span></h1>
+    <p class="accroche">Installation de caméras, dépannage informatique et vente de matériel professionnel à Soubré. Étude et devis gratuits.</p>
+    <div class="actions-h">
+      <a class="btn b-wa" href="https://wa.me/2250708480359" target="_blank" rel="noopener">💬 Demander un devis gratuit</a>
+      <a class="btn b-fant" href="tel:+2250716300000">📞 Appeler</a>
     </div>
-  </header>
-
-  <div class="garanties">
-    <div>🛡️ Devis gratuit</div>
-    <div>⚡ Intervention rapide</div>
-    <div>🔧 Matériel de qualité</div>
-    <div>🤝 Support après-vente</div>
   </div>
+  <div class="fleche" aria-hidden="true">⌄</div>
+</header>
 
-  <section class="sec">
-    <h2>Ce que nous faisons</h2>
-    <div class="titre">Trois métiers, un seul interlocuteur</div>
-    <p>De la caméra installée chez vous au dépannage de votre ordinateur, en passant par la formation de vos équipes. Pour les particuliers comme pour les entreprises, les commerces, les écoles et les usines.</p>
-  </section>
+<div class="preuve">
+  <div><b>Devis gratuit</b><span>Étude sans engagement</span></div>
+  <div><b>Import direct</b><span>Matériel d'origine</span></div>
+  <div><b>Sur site</b><span>Domicile et bureau</span></div>
+  <div><b>Après-vente</b><span>On reste joignable</span></div>
+</div>
 
-  <section class="metiers">
-    <div class="metier-bloc">
+<section class="zone">
+  <div class="oeil anim">Nos métiers</div>
+  <div class="titre anim">Un seul interlocuteur, du câble à la caméra</div>
+  <p class="chapo anim">Maisons, bureaux, commerces, écoles et usines. Nous étudions votre besoin sur place avant de chiffrer quoi que ce soit.</p>
+  <div class="metiers">
+    <article class="carte-m anim">
       <div class="num">01</div>
       <h3>Vidéosurveillance</h3>
-      <p>Vente, installation et maintenance de systèmes de sécurité, avec accès à distance depuis votre téléphone.</p>
+      <p>Vous consultez vos caméras depuis votre téléphone, où que vous soyez.</p>
       <ul class="liste">
         <li>Caméras IP et analogiques</li>
-        <li>Enregistreurs DVR et NVR</li>
+        <li>Enregistreurs NVR et DVR</li>
         <li>Contrôle d'accès et interphonie</li>
         <li>Alarmes et détecteurs</li>
-        <li>Vision nocturne et détection de mouvement</li>
         <li>Étude et devis gratuits</li>
       </ul>
-    </div>
-    <div class="metier-bloc">
+    </article>
+    <article class="carte-m anim">
       <div class="num">02</div>
       <h3>Maintenance et dépannage</h3>
-      <p>À domicile ou au bureau, pour remettre en état ce qui ne fonctionne plus et éviter que ça recommence.</p>
+      <p>À domicile ou au bureau, pour remettre en état et éviter que ça recommence.</p>
       <ul class="liste">
         <li>Dépannage matériel et logiciel</li>
         <li>Installation et configuration</li>
         <li>Réinstallation de système</li>
-        <li>Nettoyage et optimisation</li>
         <li>Réseaux, Wi-Fi et Internet</li>
         <li>Contrats de maintenance</li>
       </ul>
-    </div>
-    <div class="metier-bloc">
+    </article>
+    <article class="carte-m anim">
       <div class="num">03</div>
       <h3>Vente de matériel</h3>
-      <p>Équipements informatiques et objets connectés, avec conseil avant l'achat et support après.</p>
+      <p>Conseil avant l'achat, support après. Pas de vente à l'aveugle.</p>
       <ul class="liste">
         <li>Ordinateurs et imprimantes</li>
         <li>Matériel réseau et Wi-Fi</li>
         <li>Disques, mémoire et composants</li>
         <li>Drones — vente et location</li>
         <li>Objets connectés</li>
-        <li>Accessoires et consommables</li>
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="travaux anim">
+  <div class="zone">
+    <div class="oeil">Nos réalisations</div>
+    <div class="titre">Du travail que l'on peut montrer</div>
+    <p class="chapo">Baies de brassage, réseaux structurés et installations étiquetées étage par étage. Ce sont nos chantiers, pas des photos de catalogue.</p>
+    <div class="galerie">
+      <div class="vue anim"><img src="./travaux-baie.jpg" alt="Baie de brassage installée et câblée" loading="lazy"><span>Baie de brassage complète</span></div>
+      <div class="vue anim"><img src="./travaux-etiquetage.jpg" alt="Switch PoE étiqueté par étage" loading="lazy"><span>Étiquetage par étage</span></div>
+      <div class="vue anim"><img src="./travaux-switch-poe.jpg" alt="Switch PoE 28 ports en baie" loading="lazy"><span>Switch PoE 28 ports</span></div>
+      <div class="vue anim"><img src="./travaux-coffret.jpg" alt="Coffret réseau mural organisé" loading="lazy"><span>Coffret réseau mural</span></div>
+      <div class="vue anim"><img src="./travaux-serveur.jpg" alt="Serveur de stockage en réseau" loading="lazy"><span>Serveur de stockage</span></div>
+      <div class="vue anim"><img src="./travaux-reseau.jpg" alt="Câblage réseau structuré" loading="lazy"><span>Câblage structuré</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="zone">
+  <div class="oeil anim">Caméras et enregistreurs</div>
+  <div class="titre anim">Du matériel professionnel Hikvision</div>
+  <p class="chapo anim">Le nombre de caméras et la résolution dépendent de ce que vous voulez voir, et à quelle distance. On en parle avant de chiffrer.</p>
+  <div class="gammes">
+    <div class="gamme anim"><b>2 MP — l'essentiel</b><span>Entrée, couloir, caisse. Le meilleur rapport prix / efficacité.</span></div>
+    <div class="gamme anim"><b>4 MP — le standard</b><span>Assez de détail pour reconnaître un visage ou lire une plaque à distance raisonnable.</span></div>
+    <div class="gamme anim"><b>6 à 12 MP — haute définition</b><span>Parkings, cours d'usine. On peut zoomer dans l'enregistrement sans perdre le détail.</span></div>
+    <div class="gamme anim"><b>Dôme, tube ou PTZ</b><span>Discret en intérieur, robuste en extérieur, motorisé pour balayer une grande zone.</span></div>
+    <div class="gamme anim"><b>Vision nocturne couleur</b><span>La nuit, l'image reste en couleur. On distingue un vêtement, un véhicule.</span></div>
+    <div class="gamme anim"><b>Détection intelligente</b><span>La caméra distingue une personne d'un animal ou d'une branche. Beaucoup moins de fausses alertes.</span></div>
+  </div>
+  <div class="import anim">
+    <b>Import direct depuis la Tunisie.</b> Nous importons notre matériel Hikvision nous-mêmes, sans intermédiaire local. Des prix maîtrisés, du matériel d'origine, et la possibilité de commander une référence précise sur demande.
+  </div>
+</section>
+
+<section class="zone" style="padding-top:0">
+  <div class="oeil anim">Formations</div>
+  <div class="titre anim">Apprendre par la pratique</div>
+  <p class="chapo anim">Individuelles ou en groupe, avec attestation en fin de parcours et accompagnement après la formation.</p>
+  <div class="cols">
+    <div class="anim">
+      <h4>Informatique et réseaux</h4>
+      <ul class="liste">
+        <li>Bureautique et prise en main</li>
+        <li>Réseaux informatiques et Cisco</li>
+        <li>Sécurité informatique et cybersécurité</li>
+        <li>Programmation</li>
+        <li>Installation de systèmes d'exploitation</li>
       </ul>
     </div>
-  </section>
-
-  <section class="travaux">
-    <h2 style="font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--or);font-weight:800;margin-bottom:8px">Nos réalisations</h2>
-    <div class="titre" style="font-size:clamp(22px,5vw,30px);font-weight:800;margin-bottom:12px">Du travail que l'on peut montrer</div>
-    <p style="color:var(--gris);max-width:62ch">Baies de brassage, réseaux structurés, serveurs de stockage et installations étiquetées étage par étage. Voici des chantiers que nous avons réalisés.</p>
-    <div class="grille-photos">
-      <div class="photo"><img src="./travaux-baie.jpg" alt="Baie de brassage installée et câblée" loading="lazy"><span>Baie de brassage complète</span></div>
-      <div class="photo"><img src="./travaux-etiquetage.jpg" alt="Switch PoE étiqueté par étage" loading="lazy"><span>Étiquetage par étage</span></div>
-      <div class="photo"><img src="./travaux-switch-poe.jpg" alt="Switch PoE 28 ports en baie" loading="lazy"><span>Switch PoE 28 ports</span></div>
-      <div class="photo"><img src="./travaux-coffret.jpg" alt="Coffret réseau mural organisé" loading="lazy"><span>Coffret réseau mural</span></div>
-      <div class="photo"><img src="./travaux-serveur.jpg" alt="Serveur de stockage en réseau" loading="lazy"><span>Serveur de stockage</span></div>
-      <div class="photo"><img src="./travaux-reseau.jpg" alt="Câblage réseau structuré" loading="lazy"><span>Câblage structuré</span></div>
+    <div class="anim">
+      <h4>Création et métiers</h4>
+      <ul class="liste">
+        <li>Infographie et montage vidéo</li>
+        <li>Production audio et MAO</li>
+        <li>Photographie</li>
+        <li>Leadership et prise de parole</li>
+        <li>Langues étrangères</li>
+      </ul>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="sec" style="border-top:1px solid #e6e8ec">
-    <h2>Caméras et enregistreurs</h2>
-    <div class="titre">Du matériel professionnel Hikvision</div>
-    <p>Nous équipons maisons, bureaux, commerces, écoles et usines. Chaque installation est étudiée avant d'être chiffrée : le nombre de caméras et la résolution dépendent de ce que vous voulez voir, et à quelle distance.</p>
-    <div class="gammes">
-      <div class="gamme"><b>2 MP — l'essentiel</b><span>Surveillance de zones réduites : entrée, couloir, caisse. Le meilleur rapport prix / efficacité.</span></div>
-      <div class="gamme"><b>4 MP — le standard</b><span>Notre gamme la plus demandée. Assez de détail pour reconnaître un visage ou lire une plaque à distance raisonnable.</span></div>
-      <div class="gamme"><b>6 à 12 MP — haute définition</b><span>Grandes surfaces, parkings, cours d'usine. Permet de zoomer après coup dans l'enregistrement sans perdre le détail.</span></div>
-      <div class="gamme"><b>Dôme, tube ou PTZ</b><span>Dôme discret en intérieur, tube robuste en extérieur, PTZ motorisée pour balayer une grande zone depuis un seul point.</span></div>
-      <div class="gamme"><b>Vision nocturne couleur</b><span>La nuit, l'image reste en couleur au lieu du noir et blanc habituel. On distingue la couleur d'un vêtement ou d'un véhicule.</span></div>
-      <div class="gamme"><b>Détection intelligente</b><span>La caméra distingue une personne ou un véhicule d'un animal ou d'une branche : beaucoup moins de fausses alertes.</span></div>
-      <div class="gamme"><b>Enregistreurs NVR et DVR</b><span>Stockage local de vos images, avec accès à distance depuis votre téléphone où que vous soyez.</span></div>
-      <div class="gamme"><b>Réseau et alimentation</b><span>Switches PoE, câblage, coffrets et onduleurs — tout ce qui fait tenir l'installation dans la durée.</span></div>
-    </div>
-    <div class="import">
-      <b>Import direct depuis la Tunisie.</b> Nous importons notre matériel Hikvision nous-mêmes, sans intermédiaire local. Des prix maîtrisés, du matériel d'origine, et la possibilité de commander une référence précise sur demande.
-    </div>
-  </section>
-
-  <section class="form">
-    <h2>Formations</h2>
-    <div class="titre">Apprendre par la pratique</div>
-    <p>Formations individuelles ou en groupe, avec attestation en fin de parcours et accompagnement après la formation.</p>
-    <div class="cols">
-      <div>
-        <h4>Informatique et réseaux</h4>
-        <ul class="liste">
-          <li>Bureautique et prise en main</li>
-          <li>Réseaux informatiques et Cisco</li>
-          <li>Sécurité informatique et cybersécurité</li>
-          <li>Programmation</li>
-          <li>Installation de systèmes d'exploitation</li>
-        </ul>
-      </div>
-      <div>
-        <h4>Création et métiers</h4>
-        <ul class="liste">
-          <li>Infographie et montage vidéo</li>
-          <li>Production audio et MAO</li>
-          <li>Photographie</li>
-          <li>Leadership et prise de parole</li>
-          <li>Langues étrangères</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="infos">
+<section class="zone" style="padding-top:0">
+  <div class="oeil anim" style="text-align:center">Nous joindre</div>
+  <div class="titre anim" style="text-align:center">Une panne, un projet, une question ?</div>
+  <p class="chapo anim" style="text-align:center;margin:0 auto 8px">Le devis ne coûte rien et l'avis non plus. Décrivez votre besoin, vous aurez une réponse et une estimation.</p>
+  <div class="infos anim">
     <div><b>Zone</b><span>Soubré et environs — déplacements sur demande</span></div>
     <div><b>Téléphone</b><a href="tel:+2250716300000">07 16 30 00 00</a></div>
     <div><b>WhatsApp</b><a href="https://wa.me/2250708480359" target="_blank" rel="noopener">07 08 48 03 59</a></div>
     <div><b>Email</b><a href="mailto:armel113@gmail.com">armel113@gmail.com</a></div>
-  </section>
-
-  <div class="rappel">
-    <strong>Une panne, un projet, une question ?</strong> Le devis ne coûte rien et l'avis non plus. Écrivez sur WhatsApp en décrivant votre besoin — vous aurez une réponse et une estimation.
   </div>
+  <div class="final anim">
+    <a class="btn b-wa" href="https://wa.me/2250708480359" target="_blank" rel="noopener">💬 Demander un devis gratuit</a>
+    <a class="btn b-clair" href="tel:+2250716300000">📞 07 16 30 00 00</a>
+  </div>
+</section>
 
-  <footer>
-    Biagné Service Informatique — Soubré, Côte d'Ivoire<br>
-    Voir aussi <a href="https://armel113.github.io/residence-biagne/accueil.html">la Résidence meublée Biagné</a>
-  </footer>
+<footer>
+  Biagné Service Informatique — Soubré, Côte d'Ivoire<br>
+  Voir aussi <a href="https://armel113.github.io/residence-biagne/accueil.html">la Résidence meublée Biagné</a>
+</footer>
 
-</div>
+<nav class="quai" id="quai" aria-label="Actions rapides">
+  <a class="q1" href="https://wa.me/2250708480359" target="_blank" rel="noopener">💬 Devis gratuit</a>
+  <a class="q2" href="tel:+2250716300000">📞 Appeler</a>
+</nav>
+
+<script>
+(function(){
+  var doux = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var blocs = document.querySelectorAll('.anim');
+  if (!('IntersectionObserver' in window) || doux) {
+    blocs.forEach(function(b){ b.classList.add('vu'); });
+  } else {
+    var obs = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('vu'); obs.unobserve(e.target); }
+      });
+    }, { threshold: .14 });
+    blocs.forEach(function(b){ obs.observe(b); });
+  }
+
+  var barre = document.getElementById('barre'), quai = document.getElementById('quai');
+  function auDefilement(){
+    var passe = window.scrollY > window.innerHeight * .7;
+    barre.classList.toggle('on', passe);
+    quai.classList.toggle('on', passe);
+  }
+  window.addEventListener('scroll', auDefilement, { passive: true });
+  auDefilement();
+})();
+</script>
 </body>
 </html>
